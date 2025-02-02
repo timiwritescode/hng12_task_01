@@ -1,7 +1,7 @@
 import { BadRequestException, Controller, Get, Query, UseFilters } from '@nestjs/common';
 import { NumbersService } from './numbers.service';
-import { BadRequestExceptionFilter } from './exceptions/customBadRequest.exception';
-// import { CustomBadRequestException } from './exceptions/customBadRequest.exception';
+import { BadRequestExceptionFilter } from './filters/badRequest.filter';
+
 
 @Controller('classify-number')
 export class NumbersController {

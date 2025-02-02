@@ -9,7 +9,7 @@ export class NumbersService {
         try {
             const number = new NumberInput(numberInput);
             
-            return new ResponseDto(number)
+            return ResponseDto.create(number)
         } catch (error) {
             throw new InternalServerErrorException("An error occured")
         }
