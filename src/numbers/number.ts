@@ -35,8 +35,21 @@ export class NumberInput {
         return
     }
 
+    getProperties() {
+        const numberProperties = []
+        const oddOrEven = NumberInput.isNumberEven(this.num) ? "even" : "odd";
+
+        numberProperties.push(oddOrEven)
+        return numberProperties;
+
+    }
+
     async getNumFunFact(): Promise<string> {
         const apiResponse = await getNumberFunFact(this.num);
         return apiResponse.text
+    }
+
+    static isNumberEven(number: number): boolean {
+        return number < 0 ? Math.abs(number) % 2 == 0 : number % 2 == 0
     }
 }

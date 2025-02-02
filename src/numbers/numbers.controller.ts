@@ -11,9 +11,9 @@ export class NumbersController {
     @Get("")
     @UseFilters(BadRequestExceptionFilter)
     async getNumberClassification(
-        @Query("number") number: number
+        @Query("number") queryInput: string
     ) {
-        number = +number
+        const number = parseInt(queryInput)
         if (Number.isNaN(number)) {
             throw new BadRequestException()
         }

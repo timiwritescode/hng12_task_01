@@ -4,16 +4,19 @@ export class ResponseDto {
     number: number;
     is_prime: boolean;
     is_perfect: boolean;
-    // properties: string[];
+    properties: string[];
     // digit_sum: number;
     fun_fact: string;
 
     private constructor(
         num: number, 
         is_prime: boolean,
-        fun_fact: string) {
+        fun_fact: string,
+        numberProperties: string[]) {
         this.number = num;
         this.is_prime = is_prime;
+        this.properties = numberProperties
+
         // this.digit_sum = num.getNumDigitSum();
         this.fun_fact = fun_fact
     }
@@ -22,7 +25,7 @@ export class ResponseDto {
         const number = num.getNum();
         const is_prime = num.isNumPrime();
         const fun_fact = await num.getNumFunFact();
-
-        return new ResponseDto(number, is_prime, fun_fact)
+        const numProperties = num.getProperties();
+        return new ResponseDto(number, is_prime, fun_fact, numProperties)
     }
 }
