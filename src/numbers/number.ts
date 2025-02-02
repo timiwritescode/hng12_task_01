@@ -1,6 +1,6 @@
 import { getNumberFunFact } from "./util";
 
-class NumberInput {
+export class NumberInput {
     private num: number;
     
     constructor (numberInput: number) {
@@ -13,7 +13,7 @@ class NumberInput {
         return this.num
     }
 
-    is_num_prime(): boolean {
+    isNumPrime(): boolean {
         if (this.num === 0) return false;
 
         for (let i = 1; i < this.num; i++) {
@@ -23,19 +23,19 @@ class NumberInput {
             if (this.num % i == 0 && 
                 (i != 1)) return false;
         }
-        
+
         return true
     }
 
-    is_num_perfect(): boolean {
+    isNumPerfect(): boolean {
         return;
     }
 
-    get_num_digit_sum(): number{
+    getNumDigitSum(): number{
         return
     }
 
-    async get_num_fun_fact(): Promise<string> {
+    async getNumFunFact(): Promise<string> {
         const apiResponse = await getNumberFunFact(this.num);
         return apiResponse.text
     }

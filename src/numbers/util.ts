@@ -1,6 +1,6 @@
 import axios from "axios"
 import { API_URL } from "./constants"
-import { NumbersAPiResponse } from "./dto/api_response_dto"
+import { NumbersAPiResponse } from "./dto/numApiSchema"
 
 export async function getNumberFunFact(num: number):  Promise<NumbersAPiResponse>{
     try {
