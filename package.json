@@ -5,7 +5,7 @@
   "scripts": {
     "build": "nest build",
     "start:dev": "nest start --watch",
-    "start:prod": "node"
+    "start:prod": "node ."
   },
   "repository": {
     "type": "git",
