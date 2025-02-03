@@ -1,10 +1,11 @@
 import axios from "axios";
 import { NumbersExternalAPIData } from "./dto/externalApiDataSchema";
-import { loadEnvFile } from "process";
+import { config } from 'dotenv';
 
-loadEnvFile('.env')
 
-export class NumberInput {
+config({path: ".env"})
+
+export class NumberProperties {
     private num: number;
     
     constructor (numberInput: number) {
@@ -14,7 +15,7 @@ export class NumberInput {
     }
 
     getNum(): number {
-        return this.num
+        return this.num;
     }
 
     isNumPrime(): boolean {
@@ -50,7 +51,7 @@ export class NumberInput {
         const numberProperties = []
         const oddOrEven = this.isNumberEven(this.num) ? "even" : "odd";
         
-        if (this.isArmstrongNumber(this.num)) {
+        if (this.isArmstrongNumber()) {
             numberProperties.push("armstrong")
         }
         numberProperties.push(oddOrEven)
@@ -59,14 +60,14 @@ export class NumberInput {
     }
 
     getDigitSum(): number{
-        const stringifiedDigits = "" + this.num
+        const stringifiedDigits = (""+this.num).includes("-") ? "" + Math.abs(this.num): "" + this.num
         let totalNumber = 0;
-
+        
         for (let digit of stringifiedDigits) {
             totalNumber += Number.parseInt(digit)
         }
 
-        return totalNumber;
+        return (""+this.num).includes("-")? totalNumber - (totalNumber * 2) : totalNumber;
     }
 
     async getNumFunFact(): Promise<string> {
@@ -79,8 +80,8 @@ export class NumberInput {
         return number < 0 ? Math.abs(number) % 2 == 0 : number % 2 == 0
     }
 
-    private isArmstrongNumber(number: number): boolean {
-        const stringifiedNumber = "" + number;
+    private isArmstrongNumber(): boolean {
+        const stringifiedNumber = "" + Math.abs(this.num); // the absolute to handle negative numbers
         const power = stringifiedNumber.length;
         let totalNumber = 0;
         for (let stringNum of stringifiedNumber) {
@@ -88,7 +89,7 @@ export class NumberInput {
             totalNumber += parseInt(stringNum) ** power
             
         }
-        return totalNumber == number;
+        return totalNumber == Math.abs(this.num);
     }
 
     private async getFunFactFromExternalAPI(): Promise<NumbersExternalAPIData>{
