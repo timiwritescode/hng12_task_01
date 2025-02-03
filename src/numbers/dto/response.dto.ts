@@ -1,5 +1,3 @@
-import { NumberInput } from "../number";
-
 export class ResponseDto {
     number: number;
     is_prime: boolean;
@@ -8,7 +6,7 @@ export class ResponseDto {
     digit_sum: number;
     fun_fact: string;
 
-    private constructor(
+    constructor(
         num: number, 
         is_prime: boolean,
         is_perfect: boolean,
@@ -22,15 +20,5 @@ export class ResponseDto {
 
         this.digit_sum = digitSum;
         this.fun_fact = fun_fact
-    }
-
-    static async create(num: NumberInput) {
-        const number = num.getNum();
-        const is_prime = num.isNumPrime();
-        const is_perfect = num.isNumPerfect()
-        const fun_fact = await num.getNumFunFact();
-        const numProperties = num.getProperties();
-        const digitSum = num.getDigitSum();
-        return new ResponseDto(number, is_prime, is_perfect, fun_fact, numProperties, digitSum)
     }
 }

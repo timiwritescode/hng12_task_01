@@ -6,7 +6,7 @@ interface NumbersApiData {
     number: number;
 }
 
-export class NumbersAPiResponse {
+export class NumbersExternalAPIData {
     text: string;
     number: Number;
 

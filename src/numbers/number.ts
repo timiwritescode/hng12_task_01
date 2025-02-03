@@ -1,4 +1,8 @@
-import { getNumberFunFact } from "./util";
+import axios from "axios";
+import { NumbersExternalAPIData } from "./dto/externalApiDataSchema";
+import { loadEnvFile } from "process";
+
+loadEnvFile('.env')
 
 export class NumberInput {
     private num: number;
@@ -29,7 +33,7 @@ export class NumberInput {
 
     isNumPerfect(): boolean {
         let sumOfFactors = 0
-        for (let i = 0; i < this.num; i++) {
+        for (let i = 0; i < this.num; i++) { 
             if (i > this.num / 2) {
                 break;
             }
@@ -42,11 +46,11 @@ export class NumberInput {
     }
 
 
-    getProperties() {
+    getProperties(): string[] {
         const numberProperties = []
-        const oddOrEven = NumberInput.isNumberEven(this.num) ? "even" : "odd";
+        const oddOrEven = this.isNumberEven(this.num) ? "even" : "odd";
         
-        if (NumberInput.isArmstrongNumber(this.num)) {
+        if (this.isArmstrongNumber(this.num)) {
             numberProperties.push("armstrong")
         }
         numberProperties.push(oddOrEven)
@@ -66,22 +70,33 @@ export class NumberInput {
     }
 
     async getNumFunFact(): Promise<string> {
-        const apiResponse = await getNumberFunFact(this.num);
-        return apiResponse.text
+        const apiResponse = await this.getFunFactFromExternalAPI();
+        return apiResponse.text            
+
     }
 
-    static isNumberEven(number: number): boolean {
+    private isNumberEven(number: number): boolean {
         return number < 0 ? Math.abs(number) % 2 == 0 : number % 2 == 0
     }
 
-    static isArmstrongNumber(number: number): boolean {
+    private isArmstrongNumber(number: number): boolean {
         const stringifiedNumber = "" + number;
         const power = stringifiedNumber.length;
         let totalNumber = 0;
         for (let stringNum of stringifiedNumber) {
-            totalNumber += parseInt(stringNum) ** power
 
+            totalNumber += parseInt(stringNum) ** power
+            
         }
         return totalNumber == number;
+    }
+
+    private async getFunFactFromExternalAPI(): Promise<NumbersExternalAPIData>{
+        const API_URL = process.env.API_URL
+        const url = `${API_URL}/${this.num}?json`
+        const response = await axios.get(url)
+
+        return new NumbersExternalAPIData(response)            
+
     }
  }
