@@ -94,7 +94,7 @@ export class NumberProperties {
 
     private async getFunFactFromExternalAPI(): Promise<NumbersExternalAPIData>{
         const API_URL = process.env.API_URL
-        const url = `${API_URL}/${this.num}?json`
+        const url = `${API_URL}/${this.num}/math?json`
         const response = await axios.get(url)
 
         return new NumbersExternalAPIData(response)            
