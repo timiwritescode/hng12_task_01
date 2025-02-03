@@ -13,7 +13,7 @@ export class NumbersController {
     async getNumberClassification(
         @Query("number") queryInput: string
     ) {
-        if (!queryInput) return;
+        // if (!queryInput) return;
         const number = parseInt(queryInput)
         if (Number.isNaN(number)) {
             throw new BadRequestException()

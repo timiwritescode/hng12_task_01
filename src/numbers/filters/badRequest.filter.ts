@@ -12,7 +12,7 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
         response
             .status(status)
             .json({
-                number: request.query.number || 'Number query param missing',
+                number: request.query.number || '',
                 error: true
             })
     }
