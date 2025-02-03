@@ -14,10 +14,11 @@ export class NumbersController {
         @Query("number") queryInput: string
     ) {
         // if (!queryInput) return;
-        const number = parseInt(queryInput)
-        if (Number.isNaN(number)) {
+        
+        if (Number.isInteger(+queryInput) == false) {
             throw new BadRequestException()
         }
-        return this.numbersService.getNumberSpec(number);
+        
+        return this.numbersService.getNumberSpec(+queryInput);
     }
 }
