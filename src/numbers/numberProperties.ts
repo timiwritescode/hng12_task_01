@@ -21,7 +21,7 @@ export class NumberProperties {
     isNumPrime(): boolean {
         if (this.num === 0) return false;
 
-        for (let i = 1; i < this.num; i++) {
+        for (let i = 1; i < Math.abs(this.num); i++) {
             if (i == 0) {
                 continue
             }

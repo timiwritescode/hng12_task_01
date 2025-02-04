@@ -13,9 +13,8 @@ export class NumbersController {
     async getNumberClassification(
         @Query("number") queryInput: string
     ) {
-        // if (!queryInput) return;
         
-        if (Number.isInteger(+queryInput) == false) {
+        if (Number.isInteger(parseInt(queryInput)) == false) {
             throw new BadRequestException()
         }
         
