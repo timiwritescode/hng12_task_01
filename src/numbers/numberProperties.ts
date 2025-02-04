@@ -19,9 +19,9 @@ export class NumberProperties {
     }
 
     isNumPrime(): boolean {
-        if (this.num === 0) return false;
+        if (this.num <= 1) return false;
 
-        for (let i = 1; i < Math.abs(this.num); i++) {
+        for (let i = 1; i < this.num; i++) {
             if (i == 0) {
                 continue
             }
@@ -33,6 +33,9 @@ export class NumberProperties {
     }
 
     isNumPerfect(): boolean {
+        if (this.num < 1) {
+            return false
+        }
         let sumOfFactors = 0
         for (let i = 0; i < this.num; i++) { 
             if (i > this.num / 2) {
