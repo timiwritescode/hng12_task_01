@@ -19,6 +19,8 @@ export class NumberProperties {
     }
 
     isNumPrime(): boolean {
+        // prime numbers: numbers > 1 that are not divisible by any number
+        // except themselves and 1
         if (this.num <= 1) return false;
 
         for (let i = 1; i < this.num; i++) {
@@ -33,6 +35,7 @@ export class NumberProperties {
     }
 
     isNumPerfect(): boolean {
+        // perfect number: +ve integer in which its divisors sum up to that number
         if (this.num < 1) {
             return false
         }
@@ -84,12 +87,12 @@ export class NumberProperties {
     }
 
     private isArmstrongNumber(): boolean {
+        // armstrong number: number equal to the sum of the cubes of it's digits
         const stringifiedNumber = "" + Math.abs(this.num); // the absolute to handle negative numbers
-        const power = stringifiedNumber.length;
         let totalNumber = 0;
         for (let stringNum of stringifiedNumber) {
 
-            totalNumber += parseInt(stringNum) ** power
+            totalNumber += parseInt(stringNum) ** 3
             
         }
         return totalNumber == Math.abs(this.num);
