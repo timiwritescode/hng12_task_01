@@ -12,6 +12,6 @@ export class NumbersExternalAPIData {
 
     constructor (private apiResponse: AxiosResponse<NumbersApiData>) {
         this.text = apiResponse.data.text;
-        this.number = apiResponse.data.number
+        this.number = apiResponse.data.number;
     }
 }

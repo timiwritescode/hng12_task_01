@@ -60,14 +60,14 @@ export class NumberProperties {
     }
 
     getDigitSum(): number{
-        const stringifiedDigits = (""+this.num).includes("-") ? "" + Math.abs(this.num): "" + this.num
+        const stringifiedDigits = this.num < 0 ? "" + Math.abs(this.num): "" + this.num
         let totalNumber = 0;
         
         for (let digit of stringifiedDigits) {
             totalNumber += Number.parseInt(digit)
         }
 
-        return (""+this.num).includes("-")? totalNumber - (totalNumber * 2) : totalNumber;
+        return this.num < 0 ? totalNumber - (totalNumber * 2) : totalNumber;
     }
 
     async getNumFunFact(): Promise<string> {
