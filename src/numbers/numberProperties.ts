@@ -87,15 +87,17 @@ export class NumberProperties {
     }
 
     private isArmstrongNumber(): boolean {
-        // armstrong number: number equal to the sum of the cubes of it's digits
-        const stringifiedNumber = "" + Math.abs(this.num); // the absolute to handle negative numbers
+        // armstrong number:  A number that is equal to the sum of its own digits each raised to the power of the number of digits.
+        if (this.num < 0) return false;
+        const stringifiedNumber = "" + this.num; // the absolute to handle negative numbers
+        const power = stringifiedNumber.length;
         let totalNumber = 0;
         for (let stringNum of stringifiedNumber) {
 
-            totalNumber += parseInt(stringNum) ** 3
+            totalNumber += parseInt(stringNum) ** power
             
         }
-        return totalNumber == Math.abs(this.num);
+        return totalNumber == this.num;
     }
 
     private async getFunFactFromExternalAPI(): Promise<NumbersExternalAPIData>{
