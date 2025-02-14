@@ -53,8 +53,8 @@ export class AppController {
     @HttpCode(HttpStatus.ACCEPTED)
     async monitor(
         @Body() 
-        payload: MonitorPayload) {
-            setImmediate(() => this.appService.monitor_task(payload))
+        payload: any) {
+            await this.appService.monitor_task(payload)
             // console.log(payload)
             console.log(payload)
             return {status: "accepted"}
