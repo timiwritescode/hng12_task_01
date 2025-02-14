@@ -26,7 +26,7 @@ export class AppController {
                     "app_logo": "https://i.imgur.com/lZqvffp.png",
                     "background_color": "#fff"
                 },
-                "integration_category": "custom",
+                "integration_category": "Monitoring & Logging",
                 "integration_type": "interval",
                 "is_active": true,
                 "key_features": ["checks the health of site"],
@@ -42,19 +42,21 @@ export class AppController {
                     {"label": "interval", "type": "text", "required": true, "default": "* * * * *"}
                 ],
                 "tick_url": `${baseUrl}/tick`,
-                "target_url": `https://ping.telex.im/v1/return/01950183-8235-7b80-a9c8-8eb2a4632619`,
+                "target_url": `${baseUrl}/tick`,
+                // "target_url": `https://ping.telex.im/v1/return/01950183-8235-7b80-a9c8-8eb2a4632619`,
                 "return_url": "https://ping.telex.im/v1/return/01950183-8235-7b80-a9c8-8eb2a4632619"
             }
         
     }
 }
 
-    @Get("/tick")
+    @Post("/tick")
     @HttpCode(HttpStatus.ACCEPTED)
     async monitor(
         @Body() 
         payload: any,
     @Req() req) {
+            
             await this.appService.monitor_task(payload)
             // console.log(payload)
             console.log(req.body)

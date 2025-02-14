@@ -35,8 +35,13 @@ export class AppService {
     }
 
 
-    async monitor_task(payload: MonitorPayload) {
+    async monitor_task(payload: MonitorPayload): Promise<void> {
+        if (!payload) {
+            console.log(payload)
+            return
+        }
         try {
+
             const sites = []
             payload.settings.forEach(setting => {
                 if (setting.label.startsWith("site")) {
