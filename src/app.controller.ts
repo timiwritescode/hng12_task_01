@@ -42,7 +42,8 @@ export class AppController {
                     {"label": "interval", "type": "text", "required": true, "default": "* * * * *"}
                 ],
                 "tick_url": `${baseUrl}/tick`,
-                "target_url": `https://ping.telex.im/v1/return/01950183-8235-7b80-a9c8-8eb2a4632619`
+                "target_url": `https://ping.telex.im/v1/return/01950183-8235-7b80-a9c8-8eb2a4632619`,
+                "return_url": "https://ping.telex.im/v1/return/01950183-8235-7b80-a9c8-8eb2a4632619"
             }
         
     }
@@ -55,6 +56,7 @@ export class AppController {
         payload: MonitorPayload) {
             setImmediate(() => this.appService.monitor_task(payload))
             // console.log(payload)
+            console.log(payload)
             return {status: "accepted"}
         }
 
