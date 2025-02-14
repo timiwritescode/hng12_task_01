@@ -26,6 +26,7 @@ export class AppController {
                     "app_logo": "https://i.imgur.com/lZqvffp.png",
                     "background_color": "#fff"
                 },
+                "integration_category": "custom",
                 "integration_type": "interval",
                 "is_active": true,
                 "key_features": ["checks the health of site"],
