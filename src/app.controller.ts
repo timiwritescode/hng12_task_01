@@ -42,7 +42,7 @@ export class AppController {
                     {"label": "interval", "type": "text", "required": true, "default": "* * * * *"}
                 ],
                 "tick_url": `${baseUrl}/tick`,
-                "target_url": `${baseUrl}/tick`
+                "target_url": `https://ping.telex.im/v1/return/01950183-8235-7b80-a9c8-8eb2a4632619`
             }
         
     }

@@ -1,4 +1,4 @@
-curl --location 'https://hng12task01-production.up.railway.app/tick' \
+curl -i 'https://hng12task01-production.up.railway.app/tick' \
 --header 'Content-Type: application/json' \
 --data '{
     "channel_id": "01950183-8235-7b80-a9c8-8eb2a4632619",
