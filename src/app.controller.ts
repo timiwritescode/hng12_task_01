@@ -48,7 +48,7 @@ export class AppController {
     }
 }
 
-    @Post("/tick")
+    @Get("/tick")
     @HttpCode(HttpStatus.ACCEPTED)
     async monitor(
         @Body() 
