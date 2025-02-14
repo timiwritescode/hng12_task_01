@@ -41,7 +41,8 @@ export class AppController {
                     {"label": "site-2", "type": "text", "required": true, "default": ""},
                     {"label": "interval", "type": "text", "required": true, "default": "* * * * *"}
                 ],
-                "tick_url": `${baseUrl}/tick`
+                "tick_url": `${baseUrl}/tick`,
+                "target_url": `${baseUrl}/tick`
             }
         
     }
