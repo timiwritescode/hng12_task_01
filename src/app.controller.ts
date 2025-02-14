@@ -6,7 +6,7 @@ export class AppController {
     constructor(private appService: AppService) {}
 
 
-    @Get("integration")
+    @Get("integration.json")
     async get_integration_json(
         @Req()
         req: Request
@@ -15,6 +15,10 @@ export class AppController {
 
         return {
             "data": {
+                "date": {
+                    "created_at": "2025-02-14",
+                    "updated_at": "2025-02-14"
+                },
                 "descriptions": {
                     "app_name": "Uptime Monitor",
                     "app_description": "Monitors website uptime",
@@ -23,6 +27,14 @@ export class AppController {
                     "background_color": "#fff"
                 },
                 "integration_type": "interval",
+                "is_active": true,
+                "key_features": ["checks the health of site"],
+                "permission": {
+                    "monitoring_user": {
+                        "always_online": true,
+                        "display_name": "Custom Performance Monitor"
+                    }
+                },
                 "settings": [
                     {"label": "site-1", "type": "text", "required": true, "default": ""},
                     {"label": "site-2", "type": "text", "required": true, "default": ""},
