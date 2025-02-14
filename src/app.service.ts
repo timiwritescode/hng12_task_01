@@ -36,34 +36,39 @@ export class AppService {
 
 
     async monitor_task(payload: MonitorPayload) {
-        const sites = []
-        payload.settings.forEach(setting => {
-            if (setting.label.startsWith("site")) {
-                sites.push(setting.default)
-            }
-        })
-        
-        const results = []
-        for (const site of sites) {
-            results.push(await this.check_site_status(site))
-        }
-
-        
-        let message = ""
-        for (const result of results) {
-           if (result) message += result + "\n";
+        try {
+            const sites = []
+            payload.settings.forEach(setting => {
+                if (setting.label.startsWith("site")) {
+                    sites.push(setting.default)
+                }
+            })
             
+            const results = []
+            for (const site of sites) {
+                results.push(await this.check_site_status(site))
+            }
+    
+            
+            let message = ""
+            for (const result of results) {
+               if (result) message += result + "\n";
+                
+            }
+    
+            
+            const data = {
+                "message": message,
+                "username": "Uptime Monitor",
+                "event_name": "Uptime check",
+                "status": "error"
+            }
+    
+            await axios.post(payload.return_url, data)
+        } catch (error) {
+            console.error("Monitor task_error: " + error.message)
         }
 
-        
-        const data = {
-            "message": message,
-            "username": "Uptime Monitor",
-            "event_name": "Uptime check",
-            "status": "error"
-        }
-
-        await axios.post(payload.return_url, data)
         
     }
 }
