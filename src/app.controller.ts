@@ -65,6 +65,12 @@ export class AppController {
             return {status: "accepted"}
         }
 
-    
+    @Get("/tick")
+    async tick(
+        @Body() payload
+    ) {
+        console.log(payload)
+        return ""
+    }
 
 }
