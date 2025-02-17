@@ -6,7 +6,7 @@ export class AppController {
     constructor(private appService: AppService) {}
 
 
-    @Get("integration.json")
+    @Get("int/integration.json")
     async get_integration_json(
         @Req()
         req: Request
